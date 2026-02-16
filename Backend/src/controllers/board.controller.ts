@@ -20,7 +20,7 @@ export async function list(req: AuthRequest, res: Response) {
 }
 
 export async function update(req: AuthRequest, res: Response) {
-  const { id } = req.params;
+  const id = String(req.params.id);
   const { title } = req.body;
   const userId = req.userId!;
 
@@ -30,7 +30,7 @@ export async function update(req: AuthRequest, res: Response) {
 }
 
 export async function remove(req: AuthRequest, res: Response) {
-  const { id } = req.params;
+  const id = String(req.params.id);
   const userId = req.userId!;
 
   await deleteBoard(id, userId);
