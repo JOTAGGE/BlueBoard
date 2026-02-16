@@ -20,7 +20,6 @@ export async function getBoardWithProgress(boardId: string, userId: string) {
   
 }
 
-
 export async function createBoard(title: string, userId: string) {
   return prisma.board.create({
     data: {
