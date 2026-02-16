@@ -1,6 +1,21 @@
 import { Request, Response } from "express";
-import { createBoard, getBoards, updateBoard, deleteBoard } from "../services/board.service";
+import { createBoard, getBoards, updateBoard, deleteBoard,getBoardWithProgress } from "../services/board.service";
+
 import { AuthRequest } from "../middlewares/auth.middleware";
+
+export async function getProgress(req: AuthRequest, res: Response) {
+  const id = String(req.params.id);
+  const userId = req.userId!;
+
+  const board = await getBoardWithProgress(id, userId);
+
+  if (!board) {
+    return res.status(404).json({ message: "Board not found" });
+  }
+
+  res.json(board);
+}
+
 
 export async function create(req: AuthRequest, res: Response) {
   const { title } = req.body;

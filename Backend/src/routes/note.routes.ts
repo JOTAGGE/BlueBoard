@@ -1,14 +1,13 @@
 import { Router } from "express";
-import * as controller from "../controllers/board.controller";
+import * as controller from "../controllers/note.controller";
 import { verifyToken } from "../middlewares/auth.middleware";
 
 const router = Router();
 
 router.use(verifyToken);
 
-router.get("/:id/progress", controller.getProgress);
 router.post("/", controller.create);
-router.get("/", controller.list);
+router.get("/:boardId", controller.list);
 router.put("/:id", controller.update);
 router.delete("/:id", controller.remove);
 
